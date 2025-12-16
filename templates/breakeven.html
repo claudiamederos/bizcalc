@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Break-Even Calculator</title>
+</head>
+<body>
+
+    <h1>Break-Even Calculator</h1>
+
+    <p>
+        Break-even point = Fixed Costs ÷ (Selling Price − Variable Cost)
+    </p>
+
+    <form method="post">
+        <label>Fixed Costs (€):</label><br>
+        <input type="number" name="fixed_costs" step="0.01" min="0" required><br><br>
+
+        <label>Selling Price per Unit (€):</label><br>
+        <input type="number" name="price" step="0.01" min="0" required><br><br>
+
+        <label>Variable Cost per Unit (€):</label><br>
+        <input type="number" name="variable_cost" step="0.01" min="0" required><br><br>
+
+        <button type="submit">Calculate</button>
+    </form>
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    {% if result is not none %}
+        <h2>Result</h2>
+        <p>
+            You need to sell <strong>{{ result | round(2) }}</strong> units
+            to break even.
+        </p>
+    {% endif %}
+
+    <br>
+    <a href="/">Back to Home</a>
+
+</body>
+</html>
