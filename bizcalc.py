@@ -11,10 +11,10 @@ def get_db_connection():
 
 @app.route("/")
 def home():
-    return render_template("home.html")
+    return render_template('home.html')
 
-@app.route("/breakeven", methods=["GET", "POST"])
-def break_even():
+@app.route('/breakeven', methods=["GET", "POST"])
+def breakeven():
     result = None
     if request.method == "POST":
         fixed = float(request.form["fixed_costs"])
@@ -32,16 +32,21 @@ def break_even():
             conn.commit()
             conn.close()
 
-    return render_template("breakeven.html", result=result)
+    return render_template('breakeven.html', result=result)
 
-@app.route("/costanalysis", methods=["GET", "POST"])
-def cost_benefit():
+@app.route('/costanalysis', methods=["GET", "POST"])
+def costanalysis():
     result = None
 
     if request.method == "POST":
-        costs = float(request.form["costs"])
-        benefits = float(request.form["benefits"])
-        result = benefits - costs
+        try: 
+            costs = float(request.form["costs"])
+            benefits = float(request.form["benefits"])
+            net_benefit = benefits - costs
+            result = "{:.2f}".format(net_benefit)
+        
+        except Exception: 
+            result = "Error: Invalid input."
 
         conn = get_db_connection()
         conn.execute(
@@ -51,7 +56,7 @@ def cost_benefit():
         conn.commit()
         conn.close()
 
-    return render_template("costanalysis.html", result=result)
+    return render_template('costanalysis.html', result=result)
 
 if __name__ == "__main__":
     app.run(debug=True)

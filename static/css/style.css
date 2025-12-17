@@ -7,3 +7,37 @@ input, button {
   padding: 8px;
   margin: 5px 0;
 }
+.navbar {
+    display: flex;             /* The magic starts here */
+    justify-content: space-between; /* Pushes items to opposite ends */
+    align-items: center;       /* Centers items vertically */
+    padding: 15px 50px;       /* Adds some breathing room */
+    background-color: #333;    /* Dark banner vibe */
+    color: white;              /* Make text pop */
+    position: sticky;          /* Keeps the banner at the top when scrolling */
+    top: 0;
+    z-index: 1000;             /* Ensures it stays on top of everything else */
+}
+
+/* Styling the Logo */
+.logo a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+/* Styling the Menu Links */
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    margin-left: 20px;         /* Space between the links */
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #6495ED;            /* Changes color when you hover (bussin') */
+}
