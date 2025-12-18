@@ -1,12 +1,20 @@
 body {
-  font-family: Arial, sans-serif;
-  margin: 40px;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--light-gray);
+  margin: 0
+}
+
+:root {
+  --primary-color: #007bff;
+  --dark-bg: #212529;
+  --light-gray: #f8f9fa;
 }
 
 input, button {
   padding: 8px;
   margin: 5px 0;
 }
+
 .navbar {
     display: flex;            
     justify-content: space-between; 
@@ -41,21 +49,40 @@ input, button {
 .nav-links a:hover {
     color: #6495ED;            
 }
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 50px;
-  background-color: #333;
-  color: white;
-  margin-bottom: 30px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
 
+.navbar {
+    display: flex;            
+    justify-content: space-between; 
+    align-items: center;      
+    padding: 1rem 2rem;      
+    background-color: var(--dark-bg);
+    position: sticky;          
+    top: 0;
+    z-index: 1000;             
+}
+
+.calculator-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
 
 .card { 
-  border: none; 
-  border-radius: 15px; 
+    border: none; 
+    border-radius: 15px; 
+    transition: transform 0.3s ease, shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+
+.result-box { 
+    background-color: #ffffff; 
+    border-radius: 12px;
+    border-left: 5px solid var(--primary-color);
 }
 
 .btn-primary { 
@@ -70,7 +97,11 @@ input, button {
   transform: translateY(-2px); 
 }
 
-.result-box { 
-  background-color: #e9ecef; 
-  border-radius: 12px; 
+.contact-card { 
+  border: none; 
+  border-radius: 15px; 
+}
+
+#success-message { 
+  display: none; 
 }

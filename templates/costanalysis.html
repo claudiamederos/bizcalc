@@ -18,6 +18,7 @@
         <a class="nav-link d-inline text-white me-3" href="{{ url_for('home') }}">Home</a>
         <a class="nav-link d-inline text-white me-3" href="{{ url_for('costanalysis') }}">Cost-Benefit</a>
         <a class="nav-link d-inline text-white" href="{{ url_for('breakeven') }}">Break-Even</a>
+        <a class="nav-link text-white" href="{{ url_for('contact') }}">Contact Us</a>
     </nav>
 </header>
     
@@ -62,8 +63,9 @@
     {% endif %}
 
         <br>
-        <a href="{{ url_for('home') }}" class="btn btn-outline-secondary">Back to Home</a>
-    </div>
+        <div class="mt-5">
+            <a href="{{ url_for('home') }}" class="btn btn-link text-secondary text-decoration-none">← Back to Dashboard</a>
+        </div>
 
 </body>
 </html>
