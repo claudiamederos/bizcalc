@@ -72,6 +72,10 @@ def costanalysis():
             error = "Error: Invalid input."
     return render_template("costanalysis.html", result=result, error=error)
 
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
+
 if __name__ == "__main__":
     init_db()
     app.run(debug=True)
