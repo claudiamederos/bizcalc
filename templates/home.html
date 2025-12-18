@@ -34,16 +34,24 @@
         <div class="card shadow-sm h-100 p-3">
             <div class="card-body d-flex flex-column">
                 <h5 class="card-title fw-bold">Cost-Benefit Analysis</h5>
-                <p class="card-text text-muted">Compare expected costs and benefits to see if the move is a W or an L.</p>
-                <a href="{{ url_for('costanalysis') }}" class="btn btn-primary mt-auto">Open Calculator</a>
+                <p class="card-text text-muted">Compare expected costs and benefits to see if the move is worthy or not.</p>
+                <a href="{{ url_for('costanalysis') }}" class="btn btn-primary mt-auto">Open Analysis</a>
             </div>
         </div>
 
         <div class="card shadow-sm h-100 p-3">
             <div class="card-body d-flex flex-column">
                 <h5 class="card-title fw-bold">Break-Even Calculator</h5>
-                <p class="card-text text-muted">Find out exactly how many units you need to sell to stop being broke.</p>
+                <p class="card-text text-muted">Find out exactly how many units you need to sell to make a profit.</p>
                 <a href="{{ url_for('breakeven') }}" class="btn btn-primary mt-auto">Open Calculator</a>
+            </div>
+        </div>
+
+        <div class="card shadow-sm h-100 p-3">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title fw-bold">Contact Us</h5>
+                <p class="card-text text-muted">Do you have feedback or a question?</p>
+                <a href="{{ url_for('contact') }}" class="btn btn-primary mt-auto">Contact Us!</a>
             </div>
         </div>
     </div>
