@@ -6,38 +6,64 @@
     <meta charset="UTF-8">
     <title>Cost-Benefit Analysis</title>
 </head>
+
 <body>
+<header class="navbar navbar-expand-lg bg-dark px-4 py-3">
+    <a class="navbar-brand d-flex align-items-center gap-3 text-white" href="{{ url_for('home') }}">
+        <img src="{{ url_for('static', filename='img/logo.png') }}" height="40" alt="BizCalc Logo">
+        <span class="fs-4 fw-semibold">BizCalc</span>
+    </a>
 
-    <h1>Cost-Benefit Analysis</h1>
+    <nav class="ms-auto">
+        <a class="nav-link d-inline text-white me-3" href="{{ url_for('home') }}">Home</a>
+        <a class="nav-link d-inline text-white me-3" href="{{ url_for('costanalysis') }}">Cost-Benefit</a>
+        <a class="nav-link d-inline text-white" href="{{ url_for('breakeven') }}">Break-Even</a>
+    </nav>
+</header>
+    
 
-    <p>
-        Net Benefit = Total Benefits − Total Costs<br>
-        If Net Benefit > 0 → Worthwhile
-    </p>
+    <div class="container text-center">
+        <h1>Cost-Benefit Analysis</h1>
 
-    <form method="post">
-        <label>Total Costs (€):</label><br>
-        <input type="number" name="costs" step="0.01" min="0" required><br><br>
+        <p class="text-muted">
+            A Cost-Benefit Analysis is basically the ultimate "is it worth it?" check. It is calculated with this formula: Net Benefit = Total Benefits − Total Costs<br>
+            If Net Benefit > 0 → Worthwhile
+        </p>
 
-        <label>Total Benefits (€):</label><br>
-        <input type="number" name="benefits" step="0.01" min="0" required><br><br>
+        <div class="card p-4 shadow-sm mx-auto" style="max-width: 400px;">
+            <form method="post">
+                <div class="mb-3 text-start">
+                    <label class="form-label">Total Costs (€):</label>
+                    <input type="number" name="costs" class="form-control" step="0.01" min="0" required>
+                </div>
 
-        <button type="submit">Calculate</button>
-    </form>
+                <div class="mb-3 text-start">
+                    <label class="form-label">Total Benefits (€):</label>
+                    <input type="number" name="benefits" class="form-control" step="0.01" min="0" required>
+                </div>
 
-    {% if result is not none %}
+                <button type="submit" class="btn btn-primary w-100">Calculate</button>
+            </form>
+        </div>
+
+        {% if result is not none %}
+    <div class="mt-4">
         <h2>Result</h2>
-        <p>Net Benefit: €{{ result }}</p>
+        <p class="display-6">Net Benefit: €{{ result }}</p>
 
-        {% if result > 0 %}
-            <p style="color: green;">This decision is financially worthwhile.</p>
+        {% if result|float > 0 %}
+            <p class="fw-bold text-success">✅ This decision is financially worthwhile.</p>
+        {% elif result|float == 0 %}
+            <p class="fw-bold text-warning">🟡 This decision is a break-even (Net Benefit is 0).</p>
         {% else %}
-            <p style="color: red;">This decision is not financially worthwhile.</p>
-        {% endif %}
+            <p class="fw-bold text-danger">❌ This decision is not financially worthwhile.</p>
+        {% endif %} 
+    </div>
     {% endif %}
 
-    <br>
-    <a href="/" class="btn btn-secondary">Back to Home</a>
+        <br>
+        <a href="{{ url_for('home') }}" class="btn btn-outline-secondary">Back to Home</a>
+    </div>
 
 </body>
 </html>

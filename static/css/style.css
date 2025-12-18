@@ -8,18 +8,18 @@ input, button {
   margin: 5px 0;
 }
 .navbar {
-    display: flex;             /* The magic starts here */
-    justify-content: space-between; /* Pushes items to opposite ends */
-    align-items: center;       /* Centers items vertically */
-    padding: 15px 50px;       /* Adds some breathing room */
-    background-color: #333;    /* Dark banner vibe */
-    color: white;              /* Make text pop */
-    position: sticky;          /* Keeps the banner at the top when scrolling */
+    display: flex;            
+    justify-content: space-between; 
+    align-items: center;      
+    padding: 15px 50px;      
+    background-color: #333;   
+    color: white;              
+    position: sticky;          
     top: 0;
-    z-index: 1000;             /* Ensures it stays on top of everything else */
+    z-index: 1000;             
 }
 
-/* Styling the Logo */
+
 .logo a {
     text-decoration: none;
     color: white;
@@ -29,15 +29,48 @@ input, button {
     align-items: center;
 }
 
-/* Styling the Menu Links */
+
 .nav-links a {
     text-decoration: none;
     color: white;
-    margin-left: 20px;         /* Space between the links */
+    margin-left: 20px;         
     font-weight: 500;
     transition: color 0.3s;
 }
 
 .nav-links a:hover {
-    color: #6495ED;            /* Changes color when you hover (bussin') */
+    color: #6495ED;            
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  background-color: #333;
+  color: white;
+  margin-bottom: 30px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+
+.card { 
+  border: none; 
+  border-radius: 15px; 
+}
+
+.btn-primary { 
+  background-color: #007bff; 
+  border: none; 
+  border-radius: 8px; 
+  transition: 0.3s; 
+}
+
+.btn-primary:hover { 
+  background-color: #0056b3; 
+  transform: translateY(-2px); 
+}
+
+.result-box { 
+  background-color: #e9ecef; 
+  border-radius: 12px; 
 }
