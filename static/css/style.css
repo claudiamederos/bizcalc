@@ -95,6 +95,7 @@ input, button {
 
 .btn-primary:hover { 
   background-color: #e3126f; 
+  border-color: #e3126f;
   transform: translateY(-2px); 
 }
 
