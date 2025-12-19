@@ -25,58 +25,59 @@
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-md-7 col-lg-5 text-center">
-    <div class="container text-center">
-        <h1 class="fw-bold mb-2">Cost-Benefit Analysis</h1>
+            
+            <h1 class="fw-bold mb-2">Cost-Benefit Analysis</h1>
             <p class="text-muted mb-4">
-                A Cost-Benefit Analysis is basically the ultimate "is it worth it?" check. It is calculated with this formula: Net Benefit = Total Benefits − Total Costs<br>
-            If Net Benefit > 0 → Worthwhile
+                A Cost-Benefit Analysis is basically the ultimate "is it worth it?" check. It is calculated with this formula: <br>
+                <strong>Net Benefit = Total Benefits − Total Costs</strong><br>
+                <small>If Net Benefit > 0 → Worthwhile</small>
             </p>
 
-        <div class="card p-4 shadow-sm mx-auto" style="max-width: 400px;">
-            <form method="post">
-                <div class="mb-3 text-start">
-                    <label class="form-label">Total Costs (€):</label>
-                    <input type="number" name="costs" class="form-control" step="0.01" min="0" required>
-                </div>
+            <div class="card p-4 shadow-sm mx-auto mb-4">
+                <form method="post">
+                    <div class="mb-3 text-start">
+                        <label class="form-label">Total Costs (€):</label>
+                        <input type="number" name="costs" class="form-control" step="0.01" min="0" required>
+                    </div>
 
-                <div class="mb-3 text-start">
-                    <label class="form-label">Total Benefits (€):</label>
-                    <input type="number" name="benefits" class="form-control" step="0.01" min="0" required>
-                </div>
+                    <div class="mb-3 text-start">
+                        <label class="form-label">Total Benefits (€):</label>
+                        <input type="number" name="benefits" class="form-control" step="0.01" min="0" required>
+                    </div>
 
-                <button type="submit" class="btn btn-primary w-100">Calculate</button>
-            </form>
-        </div>
-    </div>
+                    <button type="submit" class="btn btn-primary w-100">Calculate</button>
+                </form>
+            </div>
+
+            {% if result is not none %}
+            <div class="mt-4 p-3 border rounded bg-light">
+                <h2 class="h4">Result</h2>
+                <p class="display-6 fw-bold">€{{ result }}</p>
+
+                {% if result|float > 0 %}
+                    <p class="fw-bold text-success">✅ This decision is financially worthwhile.</p>
+                {% elif result|float == 0 %}
+                    <p class="fw-bold text-warning">🟡 This decision is a break-even.</p>
+                {% else %}
+                    <p class="fw-bold text-danger">❌ This decision is not financially worthwhile.</p>
+                {% endif %} 
+            </div>
+            {% endif %}
+
+            <div class="mt-5">
+                <a href="{{ url_for('home') }}" class="btn btn-link text-secondary text-decoration-none">← Back to Dashboard</a>
+            </div>
+
         </div>
     </div>
 </div>
 
-        {% if result is not none %}
-    <div class="mt-4">
-        <h2>Result</h2>
-        <p class="display-6">Net Benefit: €{{ result }}</p>
-
-        {% if result|float > 0 %}
-            <p class="fw-bold text-success">✅ This decision is financially worthwhile.</p>
-        {% elif result|float == 0 %}
-            <p class="fw-bold text-warning">🟡 This decision is a break-even (Net Benefit is 0).</p>
-        {% else %}
-            <p class="fw-bold text-danger">❌ This decision is not financially worthwhile.</p>
-        {% endif %} 
-    </div>
-    {% endif %}
-
-        <br>
-        <div class="mt-5">
-            <a href="{{ url_for('home') }}" class="btn btn-link text-secondary text-decoration-none">← Back to Dashboard</a>
-        </div>
-
-</body>
-<footer class="bg-dark text-white py-4 mt-5">
+<footer class="bg-dark text-white py-4 mt-auto">
     <div class="container text-center">
         <p class="mb-1">&copy; 2025 BizCalc | Developed for Business Excellence</p>
         <small class="text-muted">Designed by Claudia Mederos</small>
     </div>
 </footer>
+
+</body>
 </html>
