@@ -1,5 +1,3 @@
-print("RUNNING FILE:", __file__)
-
 from flask import Flask, render_template, request
 import sqlite3
 import json
