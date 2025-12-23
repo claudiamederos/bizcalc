@@ -1,5 +1,3 @@
-print("RUNNING FILE:", __file__)
-
 from flask import Flask, render_template, request
 import sqlite3
 import json
@@ -33,7 +31,10 @@ def home():
 def breakeven():
     result = None
     error = None
+    inputs = {}
+
     if request.method == "POST":
+        inputs = request.form
         try:
             fixed = float(request.form["fixed_costs"])
             price = float(request.form["price"])
@@ -49,15 +50,17 @@ def breakeven():
                 )
                 conn.commit()
                 conn.close()
-        except Exception:
-            error = "Invalid input. Please enter numbers."
-    return render_template("breakeven.html", result=result, error=error)
+        except Exception as e:
+            error = f"Invalid input: {e}"
+    return render_template("breakeven.html", result=result, error=error, inputs=inputs)
 
 @app.route("/costanalysis", methods=["GET", "POST"])
 def costanalysis():
     result = None
     error = None
+    inputs = {}
     if request.method == "POST":
+        inputs = request.form
         try:
             costs = float(request.form["costs"])
             benefits = float(request.form["benefits"])
@@ -70,15 +73,21 @@ def costanalysis():
             )
             conn.commit()
             conn.close()
-        except Exception:
-            error = "Error: Invalid input."
-    return render_template("costanalysis.html", result=result, error=error)
+        except Exception as e:
+            error = f"Invalid input: {e}"
+    return render_template("costanalysis.html", result=result, error=error, inputs=inputs)
 
 @app.route("/contact")
 def contact():
     return render_template("contact.html")
 
+@app.route("/history")
+def history():
+    conn = get_db_connection()
+    logs = conn.execute("SELECT * FROM calculations ORDER BY created_at DESC").fetchall()
+    conn.close()
+    return render_template("history.html", logs=logs)
+
 if __name__ == "__main__":
     init_db()
     app.run(debug=True)
-

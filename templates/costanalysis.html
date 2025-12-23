@@ -17,9 +17,9 @@
     <nav class="ms-auto">
         <a class="nav-link d-inline text-white me-3" href="{{ url_for('home') }}">Home</a>
         <a class="nav-link d-inline text-white me-3" href="{{ url_for('costanalysis') }}">Cost-Benefit</a>
-        <a class="nav-link d-inline text-white" href="{{ url_for('breakeven') }}">Break-Even</a>
-        <a class="nav-link text-white me-3" href="{{ url_for('history') }}">History</a>
-        <a class="nav-link text-white" href="{{ url_for('contact') }}">Contact Us</a>
+        <a class="nav-link d-inline text-white me-3" href="{{ url_for('breakeven') }}">Break-Even</a>
+        <a class="nav-link d-inline text-white me-3" href="{{ url_for('history') }}">History</a>
+        <a class="nav-link d-inline text-white me-3" href="{{ url_for('contact') }}">Contact Us</a>
     </nav>
 </header>
     
@@ -38,12 +38,14 @@
                 <form method="post">
                     <div class="mb-3 text-start">
                         <label class="form-label">Total Costs (€):</label>
-                        <input type="number" name="costs" class="form-control" step="0.01" min="0" required>
+                        <input type="number" name="costs" class="form-control" 
+                            value="{{ inputs.get('costs', '') }}" step="0.01" min="0" required>
                     </div>
 
                     <div class="mb-3 text-start">
                         <label class="form-label">Total Benefits (€):</label>
-                        <input type="number" name="benefits" class="form-control" step="0.01" min="0" required>
+                        <input type="number" name="benefits" class="form-control" 
+                            value="{{ inputs.get('benefits', '') }}" step="0.01" min="0" required>
                     </div>
 
                     <button type="submit" class="btn btn-primary w-100">Calculate</button>
@@ -56,11 +58,11 @@
                 <p class="display-6 fw-bold">€{{ result }}</p>
 
                 {% if result|float > 0 %}
-                    <p class="fw-bold text-success">✅ This decision is financially worthwhile.</p>
+                    <p class="fw-bold text-success">😁 This decision is financially worthwhile.</p>
                 {% elif result|float == 0 %}
-                    <p class="fw-bold text-warning">🟡 This decision is a break-even.</p>
+                    <p class="fw-bold text-warning">⚠️ This decision is a break-even.</p>
                 {% else %}
-                    <p class="fw-bold text-danger">❌ This decision is not financially worthwhile.</p>
+                    <p class="fw-bold text-danger">😣 This decision is not financially worthwhile.</p>
                 {% endif %} 
             </div>
             {% endif %}
